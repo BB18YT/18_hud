@@ -1,0 +1,132 @@
+/* Paleta de colores */
+:root {
+  --color-blue-start: #16c9ff;
+  --color-blue-end: #16ffd8;
+  --color-white: #ffffff;
+  --color-talk-start: #ff5252;
+  --color-talk-end: #ff8c52;
+  --bar-bg: rgba(255, 255, 255, 0.7);
+}
+
+/* Body */
+body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Contenedor HUD */
+#hudC {
+  position: fixed;
+  width: 8vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  pointer-events: none;
+}
+
+/* Ocultar HUD completamente */
+#hudC.disappear {
+  display: none;
+}
+
+/* Elementos del HUD */
+.elemC {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 0;
+  order: 0;
+  overflow: visible;
+}
+
+/* Animaciones */
+.elemC.appear {
+  animation: appear 0.5s forwards;
+}
+
+.elemC.disappear {
+  animation: disappear 0.5s forwards;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    margin-left: 1rem;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+    margin-left: 0;
+  }
+  100% {
+    opacity: 0;
+    margin-left: 1rem;
+  }
+}
+
+@keyframes talking {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Iconos */
+.iconC {
+  position: relative;
+  height: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+}
+
+.icon {
+  font-size: 20px;
+  background: linear-gradient(180deg, var(--color-blue-start) 0%, var(--color-blue-end) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.icon.talking {
+  background: linear-gradient(180deg, var(--color-talk-start) 0%, var(--color-talk-end) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: talking 1s infinite;
+}
+
+/* Barras de progreso */
+.barC {
+  position: relative;
+  width: 100%;
+  height: 65%;
+  margin-left: -10px;
+  padding: 4px 4px 4px 13px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: var(--bar-bg);
+  display: flex;
+  align-items: center;
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.5s;
+  background: linear-gradient(90deg, var(--color-blue-start) 0%, var(--color-blue-end) 100%);
+}
